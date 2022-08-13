@@ -69,6 +69,7 @@ def text_to_speech_window():
 			with open(pathname_to_save, 'w') as file: # If the file exists, we open the file and write data on it (The content of the text area)
 				file.write(textbox.get("1.0", END))
 				file.close()
+			messagebox.showinfo("TTS Create Dialog", "File saved succesfully")
 		else:
 			save_as()
 
@@ -177,6 +178,12 @@ def tts_converter_window():
 			global is_opened_2
 			is_opened_2 = False
 
+			global filedata 
+			filedata = None
+
+			global tts
+			tts = None
+
 	# Open the file selection dialog box to choose a .ttsdialog file to convert to MP3
 	def open_tts_file():
 		file = filedialog.askopenfile(
@@ -238,9 +245,9 @@ def tts_converter_window():
 	def export_mp3():
 		file = filedialog.asksaveasfile(
 			mode='wb',
-				defaultextension='ttsdialog',
+				defaultextension='mp3',
 				filetypes = (
-			        ('TTS Files', '*.mp3'),
+			        ('MP3 Files', '*.mp3'),
 			        ('All files', '*.*')
 			    )
 			)
@@ -322,6 +329,12 @@ def tts_converter_window():
 			win.destroy()
 			global is_opened_2
 			is_opened_2 = False
+
+			global filedata 
+			filedata = None
+
+			global tts
+			tts = None
 
 	# Language selection window
 	def select_language():
